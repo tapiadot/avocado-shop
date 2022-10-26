@@ -1,10 +1,11 @@
-const url = "https://platzi-avo.vercel.app/api/avo";
+const baseUrl = "https://platzi-avo.vercel.app";
+const appNode = document.querySelector("#app");
 
 // fetch web api
 // connect to server
 // TODO: replace promises with async await
 window
-  .fetch(url)
+  .fetch(`${baseUrl}/api/avo`)
   // process response and convert to JSON
   .then((response) => response.json())
   // JSON -> Data -> Render info browser
@@ -14,12 +15,16 @@ window
       // create image
       const image = document.createElement("img");
       document.body.appendChild(image);
+      image.src = `${baseUrl}${item.image}`;
+
       // create title
       const title = document.createElement("h2");
       document.body.appendChild(title);
+      title.textContent = item.name;
+
       // create price
       const price = document.createElement("div");
-      document.body.appendChild(price);
+      price.textContent = item.price;
 
       const container = document.createElement("div");
       container.append(image, title, price);
@@ -27,5 +32,5 @@ window
       allItems.push(container);
     });
 
-    document.body.append(...allItems);
+    appNode.append(...allItems);
   });
