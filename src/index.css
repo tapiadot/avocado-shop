@@ -1,3 +1,34 @@
 @import "tailwindcss/dist/base.css";
 @import "tailwindcss/dist/components.css";
 @import "tailwindcss/dist/utilities.css";
+
+body {
+  background: lightgrey;
+}
+
+#app {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+
+.avocado-item {
+  align-content: center;
+  background: papayawhip;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px papayawhip,
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+}
+
+.avocado-img {
+  border-radius: 10px;
+  height: auto;
+  margin: 0 auto;
+  width: 290px;
+}

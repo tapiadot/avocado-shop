@@ -24,6 +24,7 @@ window
       const image = document.createElement("img");
       document.body.appendChild(image);
       image.src = `${baseUrl}${item.image}`;
+      image.classList.add("avocado-img");
 
       // create title
       const title = document.createElement("h2");
@@ -31,7 +32,7 @@ window
       title.textContent = item.name;
       // title.style = "font-size: 3rem";
       // title.style.fontSize = "3rem";
-      title.className = "text-2xl text-red-600";
+      title.classList.add("text-2xl", "text-red-600");
 
       // create price
       // Intl
@@ -40,9 +41,9 @@ window
       const price = document.createElement("div");
       price.textContent = formatPrice(item.price);
 
-      // TODO: make the site pretty with CSS
       const container = document.createElement("div");
       container.append(image, title, price);
+      container.classList.add("avocado-item");
 
       allItems.push(container);
     });
