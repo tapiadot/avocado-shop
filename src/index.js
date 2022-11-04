@@ -9,40 +9,32 @@ const formatPrice = (price) => {
   return newPrice;
 };
 
-// fetch web api
-// connect to server
 // TODO: replace promises with async await
 window
   .fetch(`${baseUrl}/api/avo`)
-  // process response and convert to JSON
   .then((response) => response.json())
-  // JSON -> Data -> Render info browser
   .then((responseJson) => {
     const allItems = [];
     responseJson.data.forEach((item) => {
-      // create image
       const image = document.createElement("img");
       document.body.appendChild(image);
       image.src = `${baseUrl}${item.image}`;
       image.classList.add("avocado-img");
 
-      // create title
       const title = document.createElement("h2");
       document.body.appendChild(title);
       title.textContent = item.name;
-      // title.style = "font-size: 3rem";
-      // title.style.fontSize = "3rem";
       title.classList.add("text-2xl", "text-red-600");
 
-      // create price
-      // Intl
-      // - format dates
-      // - format currencies
       const price = document.createElement("div");
       price.textContent = formatPrice(item.price);
 
+      const taste = document.createElement("div");
+      taste.textContent = item.attributes.taste;
+      taste.classList.add("taste");
+
       const container = document.createElement("div");
-      container.append(image, title, price);
+      container.append(image, title, price, taste);
       container.classList.add("avocado-item");
 
       allItems.push(container);
