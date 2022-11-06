@@ -15,36 +15,37 @@ const formatPrice = (price) => {
   return newPrice;
 };
 
-// TODO: replace promises with async await
-window
-  .fetch(`${baseUrl}/api/avo`)
-  .then((response) => response.json())
-  .then((responseJson) => {
-    const allItems = [];
-    responseJson.data.forEach((item) => {
-      const image = document.createElement("img");
-      document.body.appendChild(image);
-      image.src = `${baseUrl}${item.image}`;
-      image.classList.add("avocado-img");
+async function displayAvocados() {
+  const response = await window.fetch(`${baseUrl}/api/avo`);
+  const avocadoData = await response.json();
 
-      const title = document.createElement("h2");
-      document.body.appendChild(title);
-      title.textContent = item.name;
-      title.classList.add("text-2xl", "text-red-600");
+  const allItems = [];
+  avocadoData.data.forEach((item) => {
+    const image = document.createElement("img");
+    document.body.appendChild(image);
+    image.src = `${baseUrl}${item.image}`;
+    image.classList.add("avocado-img");
 
-      const price = document.createElement("div");
-      price.textContent = formatPrice(item.price);
+    const title = document.createElement("h2");
+    document.body.appendChild(title);
+    title.textContent = item.name;
+    title.classList.add("text-2xl", "text-red-600");
 
-      const taste = document.createElement("div");
-      taste.textContent = item.attributes.taste;
-      taste.classList.add("taste");
+    const price = document.createElement("div");
+    price.textContent = formatPrice(item.price);
 
-      const container = document.createElement("div");
-      container.append(image, title, price, taste);
-      container.classList.add("avocado-item");
+    const taste = document.createElement("div");
+    taste.textContent = item.attributes.taste;
+    taste.classList.add("taste");
 
-      allItems.push(container);
-    });
+    const container = document.createElement("div");
+    container.append(image, title, price, taste);
+    container.classList.add("avocado-item");
 
-    appNode.append(...allItems);
+    allItems.push(container);
   });
+
+  appNode.append(...allItems);
+}
+
+displayAvocados();
