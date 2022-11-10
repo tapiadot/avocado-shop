@@ -1,3 +1,5 @@
+"use strict";
+
 const baseUrl = "https://platzi-avo.vercel.app";
 const appNode = document.querySelector("#app");
 
